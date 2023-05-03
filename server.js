@@ -27,15 +27,14 @@ app.post('/v2/posts', (req, res) => {
       }) 
 })
 
-app.get("/vs/posts", (req, res) => {
-    Videos.find((err, data) => {
-        if (err) {
-            res.status(500).send(err)
-        }
-        else {
-            res.status(200).send(data)
-        }
+app.get('/v2/posts', (req, res) => {
+    Videos.find()
+    .then((result) => {
+      res.status(200).send(result)
     })
-})
+    .catch((err) => {
+      res.status(500).send(err)
+    }) 
+});
 
 app.listen(port, () => console.log("Listening on port:", port))
